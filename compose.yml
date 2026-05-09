@@ -1,0 +1,15 @@
+services:
+  convertx:
+    image: ghcr.io/c4illin/convertx:latest
+    container_name: convertx
+    restart: unless-stopped
+    ports:
+      - "10010:3000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      ACCOUNT_REGISTRATION: ${ACCOUNT_REGISTRATION}
+      HTTP_ALLOWED: ${HTTP_ALLOWED}
+      ALLOW_UNAUTHENTICATED: ${ALLOW_UNAUTHENTICATED}
+      AUTO_DELETE_EVERY_N_HOURS: ${AUTO_DELETE_EVERY_N_HOURS}
+      TZ: ${TZ}
