@@ -14,6 +14,7 @@ jobs:
     steps:
       - name: Trigger Portainer redeploy webhook
         run: |
-          curl -fsS -X POST "${PORTAINER_WEBHOOK_URL}"
+          curl -sS -o /tmp/portainer-webhook-response.txt -w "HTTP status: %{http_code}\n" -X POST "${PORTAINER_WEBHOOK_URL}"
+          cat /tmp/portainer-webhook-response.txt
         env:
           PORTAINER_WEBHOOK_URL: ${{ secrets.PORTAINER_WEBHOOK_URL }}
